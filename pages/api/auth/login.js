@@ -3,11 +3,11 @@ import mysql from 'mysql2/promise';
 import jwt from 'jsonwebtoken';
 
 const pool = mysql.createPool({
-    host: "localhost",
-    user: "ventley",
-    password: "Govind@123",
-    database: "ventleytechschema",
-    port: 3306
+       host: "localhost",
+       user: "ventleytechschema",
+       password: "Govind@123",
+       database: "ventley",
+       port: 3306
 });
 
 export default async function handler(req, res) {

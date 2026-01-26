@@ -9,11 +9,11 @@ export default async function handler(req, res) {
    const { lang } = req.query;
 
   const db = await mysql.createConnection({
-    host: "localhost",
-    user: "ventley",
-    password: "Govind@123",
-    database: "ventleytechschema",
-    port: 3306
+        host: "localhost",
+        user: "ventleytechschema",
+        password: "Govind@123",
+        database: "ventley",
+        port: 3306
   });
 
   const [rows] = await db.query("SELECT file_name,json_file FROM localization WHERE locale = ?", [lang]);

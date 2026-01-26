@@ -18,11 +18,11 @@ export default async function handler(req, res) {
             case 'GET':
                 // Get all C2C jobs
                 const connection = await mysql.createConnection({
-                    host: "localhost",
-                    user: "ventley",
-                    password: "Govind@123",
-                    database: "ventleytechschema",
-                    port: 3306
+                       host: "localhost",
+                       user: "ventleytechschema",
+                       password: "Govind@123",
+                       database: "ventley",
+                       port: 3306
                 });
 
                 const [jobs] = await connection.execute(`SELECT id, title, location, experience, skills, industry, jdPath, description, isActive, createdAt, updatedAt  FROM c2c_jobs WHERE isActive = TRUE ORDER BY createdAt DESC`);
