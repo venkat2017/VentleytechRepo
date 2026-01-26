@@ -14,7 +14,7 @@ module.exports = {
 
 module.exports = withImages({
   // Enable this code below for Server Side Rendering/Translation (SSR)
-  //  i18n,
+   i18n,
     //  output: 'export', // Please disable/comment for SSR Mode
 
   trailingSlash: true,
