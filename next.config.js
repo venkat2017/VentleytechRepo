@@ -17,11 +17,6 @@ module.exports = withImages({
   //  i18n,
     //  output: 'export', // Please disable/comment for SSR Mode
 
-    i18n: {
-        locales: ['en', 'de', 'ar', 'id', 'pt', 'zh'],
-        defaultLocale: 'en',
-      },
-
   trailingSlash: true,
   images: {
     disableStaticImages: true
