@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
   const db = await mysql.createConnection({
     host: "localhost",
-    user: "root",
+    user: "ventley",
     password: "Govind@123",
     database: "ventleytechschema",
     port: 3306

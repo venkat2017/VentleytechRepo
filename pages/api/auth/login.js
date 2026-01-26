@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const pool = mysql.createPool({
     host: "localhost",
-    user: "root",
+    user: "ventley",
     password: "Govind@123",
     database: "ventleytechschema",
     port: 3306
