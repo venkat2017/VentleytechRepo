@@ -4,36 +4,55 @@ import frameDeco from 'public/images/decoration/frame-deco.png';
 const useStyles = makeStyles({ uniqId: 'cards' })((theme, _params, classes) => ({
   text: {},
   title: {},
-  /* Default Card */
+  /* Default Card - UPDATED FOR ALIGNMENT */
   defaultCard: {
     direction: 'ltr',
     borderRadius: 12,
     width: 240,
-    height: 350,
+    minHeight: 400,  // CHANGED: Use minHeight instead of fixed height
+    height: 'auto',  // CHANGED: Allow auto height
     padding: theme.spacing(3, 2),
     margin: theme.spacing(3, 1),
+    display: 'flex',  // ADDED: Enable flexbox layout
+    flexDirection: 'column',  // ADDED: Stack items vertically
     '& figure': {
       borderRadius: 12,
       boxShadow: '0 1.5px 12px 6px rgba(0, 0, 0, 0.12)',
       overflow: 'hidden',
       height: 125,
       margin: theme.spacing(-5, 0, 2),
+      flexShrink: 0,  // ADDED: Prevent figure from shrinking
       '& img': {
         height: '100%',
-        minWidth: '100%'
+        minWidth: '100%',
+        objectFit: 'cover'  // ADDED: Better image fitting
       }
     },
     '& h6': {
       marginBottom: theme.spacing(2),
+      height: 56,  // ADDED: Fixed height for 2 lines
+      overflow: 'hidden',
+      display: '-webkit-box',
+      WebkitLineClamp: 2,
+      WebkitBoxOrient: 'vertical',
+      textOverflow: 'ellipsis',
+      lineHeight: 1.4
     },
     '& p': {
-      height: 90,
+      height: 96,  // CHANGED: Increased for better spacing
       overflow: 'hidden',
       marginBottom: theme.spacing(3),
+      display: '-webkit-box',  // ADDED: Enable line clamping
+      WebkitLineClamp: 4,  // ADDED: Limit to 4 lines
+      WebkitBoxOrient: 'vertical',
+      textOverflow: 'ellipsis',
+      lineHeight: 1.6,
+      flex: '0 0 auto'  // ADDED: Don't let description grow
     },
   },
   button: {
-    boxShadow: 'none'
+    boxShadow: 'none',
+    marginTop: 'auto'  // ADDED: Push button to bottom of card
   },
   /* Testimonial Card */
   testiCard: {
@@ -91,9 +110,17 @@ const useStyles = makeStyles({ uniqId: 'cards' })((theme, _params, classes) => (
     },
     [`& .${classes.figure}`]: {
       margin: 0,
-      display: 'block',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      minHeight: 170,
+      padding: theme.spacing(3),
       '& img': {
         width: '100%',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        objectFit: 'contain',
       }
     },
     [`& .${classes.title}`]: {

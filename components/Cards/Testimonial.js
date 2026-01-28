@@ -31,17 +31,7 @@ function Testimonial(props) {
           ))}
         </div>
       </Paper>
-      <div className={classes.person}>
-        <Avatar alt={name} src={avatar} className={classes.avatar} />
-        <div className={classes.name}>
-          <Typography display="block" variant="h6">
-            {name}
-          </Typography>
-          <Typography variant="caption" className={classes.title}>
-            {title} - {company}
-          </Typography>
-        </div>
-      </div>
+
     </div>
   );
 }

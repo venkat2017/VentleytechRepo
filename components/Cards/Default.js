@@ -11,8 +11,10 @@ function Services(props) {
     img,
     title,
     desc,
-    button
+    button,
+    onButtonClick
   } = props;
+
   return (
     <Paper className={classes.defaultCard}>
       <figure>
@@ -22,7 +24,13 @@ function Services(props) {
         <Typography display="block" variant="h6">{title}</Typography>
         <Typography component="p">{desc}</Typography>
       </div>
-      <Button variant="outlined" fullWidth color="primary" className={classes.button}>
+      <Button
+        variant="outlined"
+        fullWidth
+        color="primary"
+        className={classes.button}
+        onClick={onButtonClick}
+      >
         {button}
       </Button>
     </Paper>
@@ -34,6 +42,11 @@ Services.propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
+  onButtonClick: PropTypes.func
+};
+
+Services.defaultProps = {
+  onButtonClick: () => {}
 };
 
 export default Services;

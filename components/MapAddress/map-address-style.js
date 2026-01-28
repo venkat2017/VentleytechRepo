@@ -16,7 +16,7 @@ const useStyles = makeStyles({ uniqId: 'map' })((theme) => ({
     }
   },
   paper: {
-    padding: theme.spacing(3, 5),
+    padding: theme.spacing(3, 4),
     marginBottom: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(3, 2),
