@@ -15,9 +15,7 @@ function CompanyLogo() {
   return (
     <div className={classes.root}>
       <div className={classes.logo}>
-        {logos.map((logo, index) => (
-          <img src={logo} alt={'logo' + index.toString()} key={index.toString()}/>
-        ))}
+
       </div>
     </div>
   );
