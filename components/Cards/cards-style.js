@@ -97,7 +97,7 @@ const useStyles = makeStyles({ uniqId: 'cards' })((theme, _params, classes) => (
   name: {
     marginLeft: theme.spacing(2),
   },
-  /* Case Studies Card */
+  /* Industry Scenarios Card */
   caseCard: {
     maxHeight: 360,
     borderRadius: 24,

@@ -68,9 +68,6 @@ function Footer(props) {
               {brand.ventleytech.projectName}
             </Typography>
           </div>
-          <Typography color="textPrimary" className={classes.footerDesc} gutterBottom>
-            {t('ventleytech-landing.footer_paragraph')}
-          </Typography>
           {isDesktop && <Copyright />}
         </Grid>
         <Grid item xs={12} md={6}>
@@ -131,20 +128,18 @@ function Footer(props) {
         </Grid>
         <Grid item xs={12} md={3}>
           <div className={classes.socmed}>
-            <IconButton aria-label="FB" className={classes.margin} size="small">
-              <i className="ion-logo-twitter" />
-            </IconButton>
-            <IconButton aria-label="TW" className={classes.margin} size="small">
-              <i className="ion-logo-facebook" />
-            </IconButton>
-            <IconButton aria-label="IG" className={classes.margin} size="small">
-              <i className="ion-logo-instagram" />
-            </IconButton>
-            <IconButton aria-label="LI" className={classes.margin} size="small">
-              <i className="ion-logo-linkedin" />
-            </IconButton>
-          </div>
-          <SelectLang toggleDir={toggleDir} />
+             <a
+               href="https://www.linkedin.com/company/ventleytech-llc/"
+               target="_blank"
+               rel="noopener noreferrer"
+               style={{ textDecoration: 'none', color: 'inherit' }}
+             >
+               <IconButton aria-label="LI" className={classes.margin} size="small">
+                 <i className="ion-logo-linkedin" />
+               </IconButton>
+             </a>
+           </div>
+
         </Grid>
       </Grid>
       {isMobile && (

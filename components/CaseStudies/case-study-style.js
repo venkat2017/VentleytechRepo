@@ -1,7 +1,7 @@
 import { makeStyles } from 'tss-react/mui';
 import { lighten, darken } from '@mui/material/styles';
 
-const useStyles = makeStyles({ uniqId: 'case' })((theme) => ({
+const useStyles = makeStyles({ uniqId: 'industry_scenario' })((theme) => ({
   root: {
     position: 'relative',
     zIndex: 10,

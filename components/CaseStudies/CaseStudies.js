@@ -18,7 +18,8 @@ import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import { useTranslation } from 'next-i18next';
 import imgApi from 'public/images/imgAPI';
-import CaseCard from '../Cards/Case';
+import CaseCard2 from '../Cards/Case';
+import CaseCard from './EnhancedCaseCard';
 import useStyles from './case-study-style';
 import useTitle from '../Title/title-style';
 
@@ -30,183 +31,263 @@ const categories = [
     'Cloud & DevOps Engineering'
 ];
 
-const caseData = [
+// Industry scenario cards - generalized examples without specific company partnerships
+const industryScenarios = [
     {
-        logo: '/images/logos/hcltech-new-logo.png',
-        title: '',
-        desc: 'We are proud to partner with HCL Technologies, one of the world\'s leading IT services and consulting organizations.',
+        logo: '/images/icons/fintech-icon.png',
+        title: 'FinTech Product Company',
+        desc: 'Helped a financial technology company scale their engineering team with specialized talent in payment processing, compliance, and security',
+        tags: ['Payment Processing', 'Security', 'Compliance'],
+        color: '#4CAF50',
+        icon: '💰',
+        category: 'AI & Machine Learning',  // Shows relevant scenarios
         size: 'medium',
-        simple: true,
+        simple: false,
     },
     {
-        logo: '/images/logos/capgeminiBlue.png',
-        title: '',
-        desc: 'we deliver enterprise-grade software solutions, digital transformation programs, and cloud-based systems with efficiency and agility.',
+        logo: '/images/icons/it-services-icon.png',
+        title: 'Global IT Services Firm',
+        desc: 'Supported a global IT services organization with skilled professionals for enterprise software development, cloud migration, and digital transformation projects',
+        tags: ['Enterprise Software', 'Cloud Migration', 'Digital Transformation'],
+        color: '#2196F3',
+        icon: '💻',
+        category: 'Software Development',
         size: 'big',
-        simple: true,
+        simple: false,
     },
     {
-        logo: '/images/logos/Saicon.png',
-        title: '',
-        desc: 'delivering high-quality talent and project solutions across industries such as Banking, Healthcare, and Retail',
+        logo: '/images/icons/healthcare-icon.png',
+        title: 'Healthcare Analytics Startup',
+        desc: 'Staffed a healthcare analytics startup with data scientists and engineers to build HIPAA-compliant predictive analytics platforms',
+        tags: ['HIPAA Compliance', 'Data Science', 'Predictive Analytics'],
+        color: '#FF5722',
+        icon: '🏥',
+        category: 'Data Engineering & Data Science',
         size: 'medium',
-        simple: true,
+        simple: false,
     },
     {
-        logo: '/images/logos/Sira-Group.png',
-        title: '',
-        desc: 'Saicon helps us strengthen our US-based recruitment and technology service capabilities',
+        logo: '/images/icons/ecommerce-icon.png',
+        title: 'E-commerce Platform',
+        desc: 'Provided full-stack developers and DevOps engineers to modernize an e-commerce platform\'s infrastructure and improve performance',
+        tags: ['Full-Stack Dev', 'DevOps', 'Performance'],
+        color: '#FF9800',
+        icon: '🛒',
+        category: 'Software Development',
         size: 'big',
-        simple: true,
+        simple: false,
     },
     {
-        logo: '/images/logos/barclays-wordmark.png',
-        title: '',
-        desc: 'Our work with Barclays focuses on technology modernization, process automation, and quality assurance for enterprise systems',
+        logo: '/images/icons/cloud-icon.png',
+        title: 'Cloud Consulting Company',
+        desc: 'Delivered cloud architects and infrastructure specialists to help clients migrate legacy systems to modern cloud environments',
+        tags: ['Cloud Architecture', 'Infrastructure', 'Migration'],
+        color: '#00BCD4',
+        icon: '☁️',
+        category: 'Cloud & DevOps Engineering',
         size: 'medium',
-        simple: true,
+        simple: false,
     },
     {
-        logo: '/images/logos/techmatrix-logo-white.png',
-        title: '',
-        desc: 'Our partnership with Tech Matrix enhances our software engineering, testing, and automation services, enabling faster, high-quality project execution',
+        logo: '/images/icons/ai-startup-icon.png',
+        title: 'AI Product Startup',
+        desc: 'Sourced ML engineers and data scientists to accelerate development of AI-powered products and research initiatives',
+        tags: ['Machine Learning', 'AI Products', 'Research'],
+        color: '#9C27B0',
+        icon: '🤖',
+        category: 'AI & Machine Learning',
         size: 'big',
-        simple: true,
+        simple: false,
     },
 ];
 
-const caseStudiesByCategory = {
+// Detailed industry scenarios by category - generalized examples
+const scenariosByCategory = {
     'Data Engineering & Data Science': [
         {
             id: 1,
-            company: 'DataCorp Analytics',
-            project: 'Data Pipeline Optimization',
-            description: 'Built scalable ETL pipelines processing 10TB+ daily data',
-            technologies: ['Apache Spark', 'Python', 'AWS S3', 'PostgreSQL'],
-            result: '50% reduction in processing time, 30% cost savings'
+            industry: 'FinTech Product Company',
+            project: 'Real-Time Fraud Detection System',
+            description: 'Built a scalable data pipeline and ML models to detect fraudulent transactions in real-time for a digital payments platform',
+            technologies: ['Apache Kafka', 'Python', 'Scikit-learn', 'AWS Kinesis', 'PostgreSQL'],
+            result: '98% fraud detection rate, processing 5M+ transactions daily with <100ms latency',
+            challenge: 'Handle high-volume transaction data with minimal latency while maintaining accuracy'
         },
         {
             id: 2,
-            company: 'InsightHub',
-            project: 'ML-Powered Analytics Platform',
-            description: 'Developed predictive analytics platform for business intelligence',
-            technologies: ['Python', 'TensorFlow', 'Tableau', 'Redshift'],
-            result: '95% prediction accuracy, 40+ dashboards deployed'
+            industry: 'Healthcare Analytics Startup',
+            project: 'Patient Outcome Prediction Platform',
+            description: 'Developed data engineering pipelines and predictive models to forecast patient health outcomes and optimize treatment plans',
+            technologies: ['Python', 'TensorFlow', 'Apache Airflow', 'Snowflake', 'Tableau'],
+            result: '92% prediction accuracy, reduced hospital readmission rates by 25%',
+            challenge: 'Process sensitive healthcare data while maintaining HIPAA compliance and data quality'
+        },
+        {
+            id: 3,
+            industry: 'E-commerce Platform',
+            project: 'Customer Behavior Analytics Engine',
+            description: 'Created a big data analytics system to analyze customer behavior patterns and personalize shopping experiences',
+            technologies: ['Spark', 'Hadoop', 'Python', 'Redshift', 'Looker'],
+            result: '35% increase in conversion rates, 50% improvement in recommendation accuracy',
+            challenge: 'Process petabytes of clickstream data and generate insights in near real-time'
         }
     ],
     'AI & Machine Learning': [
         {
-            id: 3,
-            company: 'SmartAI Solutions',
-            project: 'Computer Vision Application',
-            description: 'Implemented image recognition system for quality control',
-            technologies: ['Python', 'PyTorch', 'OpenCV', 'TensorFlow'],
-            result: '99.2% accuracy, 10x faster than manual inspection'
+            id: 4,
+            industry: 'AI Product Startup',
+            project: 'Natural Language Processing Platform',
+            description: 'Built an advanced NLP engine for document understanding, sentiment analysis, and content generation',
+            technologies: ['Python', 'PyTorch', 'Hugging Face', 'FastAPI', 'Docker'],
+            result: 'Achieved 95% accuracy in document classification, processing 100K documents daily',
+            challenge: 'Handle multiple languages and domain-specific terminology with high accuracy'
         },
         {
-            id: 4,
-            company: 'NLPTech',
-            project: 'Conversational AI Chatbot',
-            description: 'Built AI chatbot handling 100K+ customer queries daily',
-            technologies: ['Node.js', 'GPT-4', 'LangChain', 'MongoDB'],
-            result: '85% customer satisfaction, 24/7 availability'
+            id: 5,
+            industry: 'E-commerce Platform',
+            project: 'AI-Powered Visual Search',
+            description: 'Implemented computer vision models enabling customers to search products using images',
+            technologies: ['TensorFlow', 'OpenCV', 'ResNet', 'Elasticsearch', 'React'],
+            result: '40% increase in product discovery, 3M+ image searches per month',
+            challenge: 'Match diverse product images with varying quality and angles in milliseconds'
+        },
+        {
+            id: 6,
+            industry: 'FinTech Product Company',
+            project: 'Credit Risk Assessment AI',
+            description: 'Developed ML models for automated credit scoring and risk assessment with explainable AI',
+            technologies: ['Python', 'XGBoost', 'SHAP', 'MLflow', 'Kubernetes'],
+            result: '30% reduction in default rates, 5x faster loan approval process',
+            challenge: 'Ensure model fairness and regulatory compliance while maintaining high accuracy'
         }
     ],
     'Software Development': [
         {
-            id: 5,
-            company: 'TechCorp Inc',
-            project: 'E-Commerce Platform Modernization',
-            description: 'Migrated legacy monolithic application to microservices architecture',
-            technologies: ['React', 'Node.js', 'Docker', 'Kubernetes'],
-            result: '40% performance improvement, 60% reduced deployment time'
-        },
-        {
-            id: 6,
-            company: 'FinanceFlow Solutions',
-            project: 'Real-time Analytics Dashboard',
-            description: 'Built interactive dashboard for financial data visualization',
-            technologies: ['React', 'TypeScript', 'D3.js', 'PostgreSQL'],
-            result: '99.9% uptime, processes 1M+ data points daily'
-        },
-        {
             id: 7,
-            company: 'HealthHub Systems',
-            project: 'Patient Management System',
-            description: 'Developed HIPAA-compliant healthcare management platform',
-            technologies: ['React', 'Node.js', 'MongoDB', 'AWS'],
-            result: 'Served 50,000+ patients, 99.95% uptime'
+            industry: 'Global IT Services Firm',
+            project: 'Enterprise Resource Planning Modernization',
+            description: 'Migrated legacy ERP system to modern cloud-native microservices architecture',
+            technologies: ['React', 'Node.js', 'Spring Boot', 'Docker', 'Kubernetes', 'Azure'],
+            result: '60% improvement in system performance, 50% reduction in maintenance costs',
+            challenge: 'Ensure zero-downtime migration of critical business operations'
+        },
+        {
+            id: 8,
+            industry: 'Healthcare Analytics Startup',
+            project: 'Telemedicine Platform Development',
+            description: 'Built HIPAA-compliant telemedicine platform with video consultation, e-prescriptions, and health records',
+            technologies: ['React', 'Node.js', 'WebRTC', 'PostgreSQL', 'AWS'],
+            result: 'Served 100K+ patients, 99.9% uptime, full HIPAA compliance achieved',
+            challenge: 'Ensure secure, real-time video streaming with patient data privacy'
+        },
+        {
+            id: 9,
+            industry: 'E-commerce Platform',
+            project: 'Omnichannel Commerce Solution',
+            description: 'Developed unified platform integrating online store, mobile app, and in-store POS systems',
+            technologies: ['React Native', 'GraphQL', 'Node.js', 'MongoDB', 'Redis'],
+            result: '3x increase in mobile transactions, unified inventory across 500+ stores',
+            challenge: 'Synchronize real-time inventory and orders across multiple channels'
         }
     ],
     'IT Staffing & Recruitment Services': [
         {
-            id: 8,
-            company: 'TalentBridge Corp',
-            project: 'Tech Talent Acquisition',
-            description: 'Staffed 50+ senior developers for Fortune 500 enterprise',
-            technologies: ['Recruitment Platform', 'Skill Assessment', 'Background Checks'],
-            result: '95% placement rate, avg. 2-week placement time'
+            id: 10,
+            industry: 'Cloud Consulting Company',
+            project: 'Cloud Engineering Team Augmentation',
+            description: 'Provided 15+ certified cloud architects and engineers for large-scale cloud transformation projects',
+            technologies: ['AWS/Azure/GCP Certifications', 'Infrastructure as Code', 'DevOps Practices'],
+            result: '95% placement retention rate, completed 30+ cloud migrations successfully',
+            challenge: 'Source highly specialized cloud talent with specific certifications and industry experience'
         },
         {
-            id: 9,
-            company: 'GlobalStaff Solutions',
-            project: 'Offshore Development Team',
-            description: 'Built and managed dedicated development team for client',
-            technologies: ['Team Management', 'Project Tracking', 'Quality Assurance'],
-            result: '20 developers placed, 98% retention rate'
+            id: 11,
+            industry: 'FinTech Product Company',
+            project: 'Security & Compliance Team Expansion',
+            description: 'Recruited cybersecurity specialists and compliance experts to meet regulatory requirements',
+            technologies: ['Security Assessment', 'Compliance Frameworks', 'Technical Screening'],
+            result: 'Placed 20+ security professionals, achieved SOC 2 and PCI DSS compliance',
+            challenge: 'Find candidates with rare combination of fintech knowledge and security expertise'
+        },
+        {
+            id: 12,
+            industry: 'AI Product Startup',
+            project: 'ML Engineering Team Build-out',
+            description: 'Built entire ML engineering team from scratch for AI startup\'s product development',
+            technologies: ['Technical Assessment', 'Culture Fit Evaluation', 'Onboarding Support'],
+            result: '12 ML engineers hired within 3 months, 90% retention after 1 year',
+            challenge: 'Compete with big tech for top ML talent while maintaining startup budget constraints'
         }
     ],
     'Cloud & DevOps Engineering': [
         {
-            id: 10,
-            company: 'CloudFirst Industries',
-            project: 'Cloud Migration',
-            description: 'Migrated on-premise infrastructure to AWS with zero downtime',
-            technologies: ['AWS', 'Terraform', 'CI/CD', 'Docker'],
-            result: '40% infrastructure cost reduction, 99.99% uptime'
+            id: 13,
+            industry: 'Global IT Services Firm',
+            project: 'Multi-Cloud Infrastructure Setup',
+            description: 'Designed and implemented multi-cloud strategy across AWS, Azure, and GCP for enterprise client',
+            technologies: ['Terraform', 'CloudFormation', 'Azure DevOps', 'Kubernetes', 'Prometheus'],
+            result: '45% cost reduction, 99.99% uptime SLA achieved, zero vendor lock-in',
+            challenge: 'Manage complexity of multiple cloud providers while optimizing costs and performance'
         },
         {
-            id: 11,
-            company: 'DevOps Dynamics',
-            project: 'CI/CD Pipeline Implementation',
-            description: 'Automated deployment pipeline for enterprise applications',
-            technologies: ['Jenkins', 'GitLab CI', 'Kubernetes', 'Prometheus'],
-            result: '10x faster deployments, 99.9% deployment success rate'
+            id: 14,
+            industry: 'E-commerce Platform',
+            project: 'Auto-scaling Infrastructure for Peak Traffic',
+            description: 'Built highly available infrastructure handling 10x traffic spikes during sales events',
+            technologies: ['AWS ECS/EKS', 'Auto Scaling Groups', 'CloudFront', 'RDS', 'ElastiCache'],
+            result: 'Successfully handled 5M concurrent users during Black Friday, zero downtime',
+            challenge: 'Design cost-effective infrastructure that can scale massively during peak events'
+        },
+        {
+            id: 15,
+            industry: 'FinTech Product Company',
+            project: 'Security-First CI/CD Pipeline',
+            description: 'Implemented automated DevSecOps pipeline with security scanning and compliance checks',
+            technologies: ['Jenkins', 'GitLab CI', 'SonarQube', 'Vault', 'Docker', 'ArgoCD'],
+            result: '90% reduction in security vulnerabilities, 20+ daily deployments with zero incidents',
+            challenge: 'Balance rapid deployment needs with stringent financial industry security requirements'
         }
     ]
 };
 
-function CaseStudies() {
+function IndustryScenarios() {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-    const { t } = useTranslation('common');
-
-    const [photoIndex, setPhotoIndex] = useState(0);
-    const [lightboxOpen, setLightboxOpen] = useState(false);
-    const [modalOpen, setModalOpen] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState('Software Development');
-
     const { classes, cx } = useStyles();
     const { classes: title } = useTitle();
-
-    const getSelectedCaseStudies = () => {
-        return caseStudiesByCategory[selectedIndex] || [];
-    };
+    const { t } = useTranslation('common');
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [photoIndex, setPhotoIndex] = useState(0);
+    const [selectedIndex, setSelectedIndex] = useState(categories[0]);
+    const [modalOpen, setModalOpen] = useState(false);
 
     function handleListItemClick(event, index) {
         setSelectedIndex(index);
         setModalOpen(true);
     }
 
+    function getSelectedScenarios() {
+        return scenariosByCategory[selectedIndex] || [];
+    }
+
     function onMovePrevRequest() {
-        setPhotoIndex((photoIndex + caseData.length - 1) % caseData.length);
+        setPhotoIndex((photoIndex + industryScenarios.length - 1) % industryScenarios.length);
     }
 
     function onMoveNextRequest() {
-        setPhotoIndex((photoIndex + caseData.length + 1) % caseData.length);
+        setPhotoIndex((photoIndex + industryScenarios.length + 1) % industryScenarios.length);
     }
 
     function showPopup(index) {
+        // Get the category from the industry card and open the modal with relevant scenarios
+        const card = industryScenarios[index];
+        if (card && card.category) {
+            setSelectedIndex(card.category);
+            setModalOpen(true);
+        }
+    }
+
+    function showLightbox(index) {
         setLightboxOpen(true);
         setPhotoIndex(index);
     }
@@ -224,19 +305,23 @@ function CaseStudies() {
             desc={item.desc}
             size={item.size}
             simple={item.simple || false}
+            tags={item.tags || []}
+            color={item.color || '#2196F3'}
+            icon={item.icon || ''}
+            category={item.category || ''}
             openPopup={() => showPopup(index)}
         />
     );
 
-    const selectedCaseStudies = getSelectedCaseStudies();
+    const selectedScenarios = getSelectedScenarios();
 
     return (
         <div className={classes.root}>
             {lightboxOpen && (
                 <Lightbox
-                    mainSrc={caseData[photoIndex].bg || caseData[photoIndex].logo}
-                    nextSrc={caseData[(photoIndex + 1) % caseData.length].bg || caseData[(photoIndex + 1) % caseData.length].logo}
-                    prevSrc={caseData[(photoIndex + 1) % caseData.length].logo || null}
+                    mainSrc={industryScenarios[photoIndex].bg || industryScenarios[photoIndex].logo}
+                    nextSrc={industryScenarios[(photoIndex + 1) % industryScenarios.length].bg || industryScenarios[(photoIndex + 1) % industryScenarios.length].logo}
+                    prevSrc={industryScenarios[(photoIndex + 1) % industryScenarios.length].logo || null}
                     onCloseRequest={() => setLightboxOpen(false)}
                     onMovePrevRequest={onMovePrevRequest}
                     onMoveNextRequest={onMoveNextRequest}
@@ -253,54 +338,71 @@ function CaseStudies() {
                 }}
             >
                 <DialogTitle sx={{ backgroundColor: '#1976d2', color: 'white', fontWeight: 'bold' }}>
-                    {selectedIndex} - Case Studies
+                    {selectedIndex} - Industry Scenarios
                 </DialogTitle>
                 <DialogContent sx={{ padding: '24px', backgroundColor: '#f5f5f5' }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '10px' }}>
-                        {selectedCaseStudies.length > 0 ? (
-                            selectedCaseStudies.map((caseStudy) => (
+                        {selectedScenarios.length > 0 ? (
+                            selectedScenarios.map((scenario) => (
                                 <Box
-                                    key={caseStudy.id}
+                                    key={scenario.id}
                                     sx={{
                                         backgroundColor: 'white',
-                                        padding: '16px',
+                                        padding: '20px',
                                         borderRadius: '8px',
-                                        border: '1px solid #e0e0e0'
+                                        border: '1px solid #e0e0e0',
+                                        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
                                     }}
                                 >
                                     <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#1976d2', marginBottom: '8px' }}>
-                                        {caseStudy.project}
+                                        {scenario.project}
                                     </Typography>
-                                    <Typography variant="subtitle2" sx={{ color: '#666', marginBottom: '8px' }}>
-                                        Client: {caseStudy.company}
+                                    <Typography variant="subtitle2" sx={{ color: '#666', marginBottom: '12px', fontStyle: 'italic' }}>
+                                        Industry: {scenario.industry}
                                     </Typography>
-                                    <Typography variant="body2" sx={{ marginBottom: '12px', color: '#333' }}>
-                                        {caseStudy.description}
+                                    <Typography variant="body2" sx={{ marginBottom: '16px', color: '#333', lineHeight: 1.6 }}>
+                                        {scenario.description}
                                     </Typography>
-                                    <Box sx={{ marginBottom: '12px' }}>
+
+                                    {scenario.challenge && (
+                                        <Box sx={{ marginBottom: '16px', padding: '12px', backgroundColor: '#fff3e0', borderRadius: '4px', borderLeft: '4px solid #ff9800' }}>
+                                            <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', marginBottom: '4px', color: '#f57c00' }}>
+                                                Challenge:
+                                            </Typography>
+                                            <Typography variant="body2" sx={{ color: '#333' }}>
+                                                {scenario.challenge}
+                                            </Typography>
+                                        </Box>
+                                    )}
+
+                                    <Box sx={{ marginBottom: '16px' }}>
                                         <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', marginBottom: '8px' }}>
-                                            Technologies:
+                                            Technologies Used:
                                         </Typography>
                                         <Box sx={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                                            {caseStudy.technologies.map((tech, idx) => (
+                                            {scenario.technologies.map((tech, idx) => (
                                                 <Chip
                                                     key={idx}
                                                     label={tech}
                                                     size="small"
-                                                    sx={{ backgroundColor: '#e3f2fd', color: '#1976d2' }}
+                                                    sx={{ backgroundColor: '#e3f2fd', color: '#1976d2', fontWeight: '500' }}
                                                 />
                                             ))}
                                         </Box>
                                     </Box>
-                                    <Box sx={{ backgroundColor: '#e8f5e9', padding: '8px', borderRadius: '4px' }}>
+
+                                    <Box sx={{ backgroundColor: '#e8f5e9', padding: '12px', borderRadius: '4px', borderLeft: '4px solid #4caf50' }}>
+                                        <Typography variant="caption" sx={{ fontWeight: 'bold', display: 'block', marginBottom: '4px', color: '#2e7d32' }}>
+                                            Results Achieved:
+                                        </Typography>
                                         <Typography variant="body2" sx={{ color: '#2e7d32', fontWeight: '500' }}>
-                                            ✓ Results: {caseStudy.result}
+                                            ✓ {scenario.result}
                                         </Typography>
                                     </Box>
                                 </Box>
                             ))
                         ) : (
-                            <Typography>No case studies available for this category.</Typography>
+                            <Typography>No industry scenarios available for this category.</Typography>
                         )}
                     </Box>
                 </DialogContent>
@@ -323,7 +425,10 @@ function CaseStudies() {
                         >
                             <div>
                                 <Typography variant="h4" className={title.primary}>
-                                    {t('ventleytech-landing.case_title')}
+                                    Industry Scenarios
+                                </Typography>
+                                <Typography variant="body2" sx={{ marginTop: 2, marginBottom: 3, color: '#666' }}>
+                                    Explore how we've helped businesses across various industries succeed with tailored IT staffing solutions
                                 </Typography>
                                 <List component="nav">
                                     {categories.map((item, index) => (
@@ -342,14 +447,20 @@ function CaseStudies() {
                         </ScrollAnimation>
                     </Grid>
                     <Grid item md={9} xs={12}>
+                        <Box sx={{ marginBottom: 3 }}>
+                            <Typography variant="body1" sx={{ color: '#666', fontStyle: 'italic' }}>
+                                Click on any industry card below to explore detailed scenarios
+                            </Typography>
+                        </Box>
                         <div className={classes.massonry}>
-                            <Grid container spacing={3} alignItems="stretch">
-                                {caseData.map((item, index) => (
+                            <Grid container spacing={2.5}>
+                                {industryScenarios.map((item, index) => (
                                     <Grid
                                         key={index.toString()}
                                         item
                                         xs={12}
-                                        sm={item.size === 'big' ? 6 : item.size === 'medium' ? 4 : 3}
+                                        sm={6}
+                                        md={4}
                                         sx={{ display: 'flex' }}
                                     >
                                         <ScrollAnimation
@@ -375,4 +486,4 @@ function CaseStudies() {
     );
 }
 
-export default CaseStudies;
+export default IndustryScenarios;
