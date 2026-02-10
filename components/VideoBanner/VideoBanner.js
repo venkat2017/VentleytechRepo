@@ -15,6 +15,7 @@ import { useText } from 'theme/common';
 import imgApi from 'public/images/imgAPI';
 import yt from 'youtube';
 import useStyles from './banner-style';
+import ContactModal from './ContactModal';
 
 
 
@@ -29,6 +30,9 @@ function VideoBanner() {
 
   // Translation function
   const { t } = useTranslation('common');
+
+  // Contact Modal state
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   // Youtube player
   const [play, setPlayed] = useState(false);
@@ -89,6 +93,14 @@ function VideoBanner() {
     }
   };
 
+  const handleOpenContactModal = () => {
+    setContactModalOpen(true);
+  };
+
+  const handleCloseContactModal = () => {
+    setContactModalOpen(false);
+  };
+
   return (
     <div className={classes.heroContent}>
       {isMobile && (
@@ -108,7 +120,13 @@ function VideoBanner() {
               <Typography className={cx(classes.subtitle, text.subtitle)} variant="h5">
                 {t('ventleytech-landing.banner_subtitle')}
               </Typography>
-              <Button variant="outlined" size="large" color="secondary" className={classes.button}>
+              <Button 
+                variant="outlined" 
+                size="large" 
+                color="secondary" 
+                className={classes.button}
+                onClick={handleOpenContactModal}
+              >
                 {t('ventleytech-landing.banner_button')}
                 <SendIcon className={classes.icon} />
               </Button>
@@ -149,6 +167,10 @@ function VideoBanner() {
         </Grid>
       </Container>
 
+      <ContactModal 
+        open={contactModalOpen} 
+        onClose={handleCloseContactModal} 
+      />
     </div>
 
 
