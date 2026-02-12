@@ -53,7 +53,7 @@ const testiContent = [
         rating: 5
     },
     {
-        text: 'VentleyTech doesn\'t just deliver projects—they act as an extension of our team. Their proactive communication, technical guidance, and commitment to quality make them a long-term partner we can depend on.',
+        text: 'VentleyTech goes beyond project delivery and truly operates as an extension of our team. Their proactive communication, technical leadership, and commitment to quality make them a trusted long-term partner.',
         avatar: imgAPI.avatar[6],
         name: 'Matthew Cole',
         company: 'Global Tech Solutions',
