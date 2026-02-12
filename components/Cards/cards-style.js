@@ -56,18 +56,39 @@ const useStyles = makeStyles({ uniqId: 'cards' })((theme, _params, classes) => (
   },
   /* Testimonial Card */
   testiCard: {
-    direction: 'ltr',
-    position: 'relative',
+    width: 240,
+        [theme.breakpoints.up('sm')]: {
+          width: 300,
+        },
+        [theme.breakpoints.down('sm')]: {
+          width: '100%',
+        }
   },
   paper: {
-    padding: theme.spacing(3),
-    width: 240,
-    height: 240,
-    borderRadius: '50px 50px 50px 0',
-    '& p': {
-      height: 130,
-      overflow: 'hidden'
-    }
+        padding: theme.spacing(3),
+        width: '100%',
+        // FIXED: Removed fixed height that was causing text truncation
+        minHeight: 200, // Changed from height to minHeight
+        borderRadius: 12,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        // FIXED: Changed overflow to visible to show all text
+        overflow: 'visible', // Changed from 'hidden'
+        boxShadow: theme.shadows[2],
+        '& p': {
+          // FIXED: Removed line-clamp restrictions
+          lineHeight: 1.6,
+          marginBottom: theme.spacing(2),
+          color: theme.palette.text.primary,
+          fontSize: '0.875rem',
+          // Allow text to wrap naturally without truncation
+          overflow: 'visible',
+          textOverflow: 'clip',
+          display: 'block',
+          WebkitLineClamp: 'unset',
+          WebkitBoxOrient: 'unset',
+        }
   },
   rating: {
     marginTop: theme.spacing(4)

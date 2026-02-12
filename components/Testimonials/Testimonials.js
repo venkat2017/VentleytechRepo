@@ -13,7 +13,7 @@ import useStyle from './testi-style';
 
 const testiContent = [
     {
-        text: 'VentleyTech has been our go-to partner for several years. Their Java and cloud development team helped us modernize our enterprise systems efficiently and on time. Their technical depth and project management discipline are impressive.',
+        text: 'VVentleyTech has an excellent Java and cloud development team that helped us modernize our enterprise systems efficiently and on time. Their technical depth and project management discipline are truly impressive.',
         avatar: imgAPI.avatar[10],
         name: 'Neha Sharma',
         company: 'Value Labs',
@@ -21,7 +21,7 @@ const testiContent = [
         rating: 5
     },
     {
-        text: 'We partnered with VentleyTech for testing and QA automation. Their team implemented a complete CI/CD integrated automation framework that significantly reduced our release cycle and improved product quality.',
+        text: 'VentleyTech is providing testing and QA automation. Their team implemented a complete CI/CD integrated automation framework that significantly reduced our release cycle and improved product quality.',
         avatar: imgAPI.avatar[1],
         name: 'John Peterson',
         company: 'Optum',
@@ -29,7 +29,7 @@ const testiContent = [
         rating: 4
     },
     {
-        text: 'VentleyTech\'s staffing team has been instrumental in helping us find top talent across multiple projects in the US. Their speed, transparency, and understanding of our technical requirements make them one of our most trusted staffing partners.',
+        text: 'VentleyTech’s staffing team has been instrumental in accelerating our hiring process. Their transparency and deep understanding of our technical requirements make them one of our most trusted staffing partners.',
         avatar: imgAPI.avatar[2],
         name: 'Jena Doe',
         company: 'NTT (USA)',
