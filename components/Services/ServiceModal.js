@@ -359,7 +359,8 @@ function ServiceModal({ open, onClose, service }) {
                   Let's discuss how we can help transform your business with our {title.toLowerCase()}
                 </p>
                 <button className={classes.ctaButton}>
-                  Contact Us Today
+                  Get in Touch
+                  +1 (223) 221-9994 | info@ventleytech.com
                 </button>
               </div>
             </div>
