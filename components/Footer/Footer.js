@@ -27,23 +27,7 @@ function Copyright() {
   );
 }
 
-const footers = [
-  {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-    link: ['#team', '#history', '#contact-us', '#locations'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-    link: ['#resource', '#resource-name', '#another-resource', '#final-resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
-    link: ['#privacy-policy', '#terms-of-use'],
-  },
-];
+const footers = []; // Footer sitemap links removed per request
 
 function Footer(props) {
   const { toggleDir } = props;
