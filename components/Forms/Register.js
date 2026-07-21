@@ -62,7 +62,7 @@ function Register() {
             align="left"
             color="secondary"
           />
-          <Button component={Link} size="small" className={classes.buttonLink} href={routeLink.education.login}>
+          <Button component={Link} size="small" className={classes.buttonLink} href={routeLink.ventleytech.login}>
             <Icon className={cx(classes.icon, classes.signArrow)}>arrow_forward</Icon>
             {t('register_already')}
           </Button>

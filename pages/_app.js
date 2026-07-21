@@ -156,6 +156,6 @@ MyApp.propTypes = {
   router: PropTypes.object.isRequired
 };
 
-MyApp.getInitialProps = async (appContext) => ({ ...(await App.getInitialProps(appContext)) });
-
+// Removed getInitialProps to allow static export with `output: 'export'`.
+// If you rely on server-side props globally, convert them to per-page SSG or remove.
 export default appWithTranslation(MyApp);

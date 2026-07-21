@@ -12,7 +12,7 @@ function Register() {
     <Fragment>
       <Head>
         <title>
-          { brand.education.name + ' - Register' }
+          { brand.ventleytech.name + ' - Register' }
         </title>
       </Head>
       <div>

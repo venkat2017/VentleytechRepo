@@ -15,8 +15,9 @@ module.exports = {
 module.exports = withImages({
   // Enable this code below for Server Side Rendering/Translation (SSR)
   //  i18n,
-    //  output: 'export', // Please disable/comment for SSR Mode
+    output: 'export', // Use static HTML export output
   trailingSlash: true,
+  productionBrowserSourceMaps: false,
   images: {
     disableStaticImages: true
   },
